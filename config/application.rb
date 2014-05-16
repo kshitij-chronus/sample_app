@@ -13,6 +13,8 @@ Bundler.require(*Rails.groups)
 
 module SampleApp
   class Application < Rails::Application
+    config.active_record.whitelist_attributes = true
+    config.active_record.mass_assignment_sanitizer = :strict 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
