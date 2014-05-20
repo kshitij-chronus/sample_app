@@ -2,16 +2,19 @@
 	<%= form_for(current_user.votes.of_upvote_type.find_by_micropost_id(micropost), html: { method: :delete }) do |f| %>
     <div><%= f.hidden_field :micropost_id %></div> 
     <div><%= f.hidden_field :category %></div>  
-    <%= f.submit "Unupvote", class: "btn btn-small" %>
+    <%#= f.submit "Unupvote", class: "btn btn-small" %>
+    <%= button_tag '<i class="icon-thumbs-up"></i>'.html_safe , :class=>"btn btn-medium btn-info" %>
   <% end %>
 <% else %>
   <%= form_for(current_user.votes.of_upvote_type.build(micropost_id: micropost.id)) do |f| %>
       <div><%= f.hidden_field :micropost_id %></div>    
       <div><%= f.hidden_field :category %></div> 
       <% if current_user.downvote?(micropost) %>  
-        <%= f.submit "Upvote", class: "btn btn-small btn-info" , disabled: "disabled" %> 
+        <%#= f.submit "Upvote", class: "btn btn-small btn-info" , disabled: "disabled" %>
+        <%= button_tag '<i class="icon-thumbs-up"></i>'.html_safe , :class=>"btn btn-medium " ,disabled: "disabled" %> 
       <% else %>
-        <%= f.submit "Upvote", class: "btn btn-small btn-info" %>
+        <%#= f.submit "Upvote", class: "btn btn-small btn-info" %>
+        <%= button_tag '<i class="icon-thumbs-up"></i>'.html_safe , :class=>"btn btn-medium " %>
     <% end %> 
   <% end %>
 <% end %>
