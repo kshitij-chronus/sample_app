@@ -1,0 +1,25 @@
+<% if current_user.upvote?(micropost) %>
+	<%= form_for(current_user.votes.of_upvote_type.find_by_micropost_id(micropost), html: { method: :delete }) do |f| %>
+    <div><%= f.hidden_field :micropost_id %></div> 
+    <div><%= f.hidden_field :category %></div>  
+    <%= f.submit "Unupvote", class: "btn btn-small" %>
+  <% end %>
+<% else %>
+  <%= form_for(current_user.votes.of_upvote_type.build(micropost_id: micropost.id)) do |f| %>
+      <div><%= f.hidden_field :micropost_id %></div>    
+      <div><%= f.hidden_field :category %></div> 
+      <% if current_user.downvote?(micropost) %>  
+        <%= f.submit "Upvote", class: "btn btn-small btn-info" , disabled: "disabled" %> 
+      <% else %>
+        <%= f.submit "Upvote", class: "btn btn-small btn-info" %>
+    <% end %> 
+  <% end %>
+<% end %>
+
+
+
+
+
+
+
+

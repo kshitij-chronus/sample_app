@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password
+  has_many :votes
   has_many :microposts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
@@ -37,6 +38,31 @@ class User < ActiveRecord::Base
   def unfollow!(other_user)
     relationships.find_by_followed_id(other_user.id).destroy
   end
+
+  def upvote?(micropost_id)
+    votes.of_upvote_type.find_by_micropost_id(micropost_id)
+  end
+
+  def upvote!(micropost_id)
+    votes.of_upvote_type.create!(micropost_id: micropost_id)
+  end
+
+  def unupvote!(micropost_id)
+    votes.of_upvote_type.find_by_micropost_id(micropost_id).destroy
+  end
+
+  def downvote?(micropost_id)
+    votes.of_downvote_type.find_by_micropost_id(micropost_id)
+  end
+
+  def downvote!(micropost_id)
+    votes.of_downvote_type.create!(micropost_id: micropost_id)
+  end
+
+  def undownvote!(micropost_id)
+    votes.of_downvote_type.find_by_micropost_id(micropost_id).destroy
+  end
+
 
   private
 

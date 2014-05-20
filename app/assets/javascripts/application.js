@@ -15,3 +15,10 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+/*jQuery(function(){
+	var url = jQuery(".feed_item").data("href");
+	$(".feed_item").click(function(){
+     	window.location=$(this).data("href");
+	});
+});*/

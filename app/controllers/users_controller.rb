@@ -2,11 +2,13 @@ class UsersController < ApplicationController
 before_filter :signed_in_user, only: [:index, :edit, :update , :destroy]
 before_filter :correct_user,   only: [:edit, :update]
 before_filter :admin_user,     only: :destroy
-before_filter :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
+before_filter :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers, :upvote, :downvote]
 
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
+    @micropost  = current_user.microposts.build
+    
   end
 
   def new
@@ -17,7 +19,7 @@ before_filter :signed_in_user, only: [:index, :edit, :update, :destroy, :followi
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "Welcome to the My App!"
       redirect_to @user
     else
       render 'new'

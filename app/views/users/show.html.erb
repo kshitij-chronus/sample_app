@@ -1,20 +1,25 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-    <section>
-      <%= render 'shared/stats' %>
-    </section>
-  </aside>
+<div class="row-fluid">
+  <div class="span4">
+    <aside>
+      <section>
+        <%= render 'shared/user_info' %>
+      </section>
+      <section>
+        <%= render 'shared/stats' %>
+        <br></br>
+        <%= render 'follow_form' if signed_in? %>
+      </section>
+      <% if(current_user==@user) %>
+      <section>
+        <%= render 'shared/micropost_form' %>
+      </section>
+      <% end %>
+    </aside>
+  </div>
   <div class="span8">
-  <%= render 'follow_form' if signed_in? %>
     <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+      <h3>Cards (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">
         <%= render @microposts %>
       </ol>

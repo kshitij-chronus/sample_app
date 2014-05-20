@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140516125747) do
+ActiveRecord::Schema.define(version: 20140520054428) do
 
   create_table "microposts", force: true do |t|
-    t.string   "content"
+    t.text     "content",    limit: 255
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -42,5 +42,16 @@ ActiveRecord::Schema.define(version: 20140516125747) do
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+
+  create_table "votes", force: true do |t|
+    t.integer  "category"
+    t.integer  "micropost_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["micropost_id"], name: "index_votes_on_micropost_id"
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id"
 
 end

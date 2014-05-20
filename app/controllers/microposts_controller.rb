@@ -1,10 +1,18 @@
 class MicropostsController < ApplicationController
   before_filter :signed_in_user
 
+  def new
+    @micropost  = current_user.microposts.build
+  end
+
+  def show 
+    redirect_to '/'
+  end
+
   def create
     @micropost = current_user.microposts.build(params[:micropost])
     if @micropost.save
-      flash[:success] = "Micropost created!"
+      flash[:success] = "Card created!"
       redirect_to root_url
     else
       @feed_items = []
@@ -16,6 +24,21 @@ class MicropostsController < ApplicationController
     @micropost = Micropost.find(params[:id]) #added def'n for @micropost
     @micropost.destroy
     redirect_to root_url
+  end
+
+
+  def upvotes
+    @title = "Upvotes"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_votes'
+  end
+
+  def downvotes
+    @title = "Downvotes"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_votes'
   end
 
   private
