@@ -5,8 +5,8 @@ class MicropostsController < ApplicationController
     @micropost  = current_user.microposts.build
   end
 
-  def show 
-    redirect_to '/'
+  def show
+    @micropost = Micropost.find(params[:id])
   end
 
   def create
@@ -30,14 +30,14 @@ class MicropostsController < ApplicationController
   def upvotes
     @title = "Upvotes"
     @user = User.find(params[:id])
-    @users = @user.followers.paginate(page: params[:page])
+    #@users = @user.followers.paginate(page: params[:page])
     render 'show_votes'
   end
 
   def downvotes
     @title = "Downvotes"
     @user = User.find(params[:id])
-    @users = @user.followers.paginate(page: params[:page])
+    #@users = @user.followers.paginate(page: params[:page])
     render 'show_votes'
   end
 

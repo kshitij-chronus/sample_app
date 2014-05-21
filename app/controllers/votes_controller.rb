@@ -10,7 +10,7 @@ class VotesController < ApplicationController
       current_user.downvote!(micropost.id)
     end
     respond_to do |format|
-       format.html { redirect_to micropost }
+       format.html { redirect_to root_path }
        format.js
     end
   end
@@ -24,7 +24,7 @@ class VotesController < ApplicationController
       current_user.undownvote!(micropost.id)
     end
     respond_to do |format|
-      format.html { redirect_to micropost }
+      format.html { redirect_to root_path }
       format.js
     end
   end

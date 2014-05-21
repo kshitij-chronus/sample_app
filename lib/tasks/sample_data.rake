@@ -4,6 +4,7 @@ namespace :db do
     make_users
     make_microposts
     make_relationships
+    make_votes
   end
 end
 
@@ -40,3 +41,21 @@ def make_relationships
   followed_users.each { |followed| user.follow!(followed) }
   followers.each      { |follower| follower.follow!(user) }
 end
+
+def make_votes
+  users = User.all(limit: 20)
+  microposts = Micropost.all
+  users.each { |user|
+    microposts.each { |micropost|
+      if [true, false].sample 
+        if [true, false].sample 
+          user.upvote!(micropost.id)
+        else
+          user.downvote!(micropost.id)
+        end
+      end
+    }
+  }
+end
+
+#micropost.votes.where(:category => 1).count

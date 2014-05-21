@@ -16,9 +16,8 @@
 //= require bootstrap
 //= require_tree .
 
-/*jQuery(function(){
-	var url = jQuery(".feed_item").data("href");
-	$(".feed_item").click(function(){
+jQuery(function(){
+	jQuery(document).on("click",".feed_item .content",function(){
      	window.location=$(this).data("href");
 	});
-});*/
+});

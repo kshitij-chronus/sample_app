@@ -1,4 +1,4 @@
-<li class="feed_item" id="<%= feed_item.id %>" >
+<li class="feed_item" id="<%= feed_item.id %>"  >
   <%= link_to gravatar_for(feed_item.user), feed_item.user %>
     <span class="user">
       <%= link_to feed_item.user.name, feed_item.user %>
@@ -15,5 +15,5 @@
   <% end %>
   </div>
   <br/>
-    <span class="content"><%= feed_item.content %></span>
+    <span class="content" data-href="<%= micropost_path(feed_item) %>" ><%= feed_item.content %></span>
 </li>

@@ -265,18 +265,21 @@ li.feed_item{
 	 margin: 10px;
    vertical-align: top;    
 	 background-color: #ddd;
-	 cursor: pointer;
 	 text-overflow: ellipsis;
 	 word-wrap: break-word;
    margin-left: 10px;
    padding: 10px;
    .content{
     overflow: hidden;
-    height: 120px;
+    height: 115px;
     padding: 5px;
+    cursor: pointer;
    }
   }
 
+li.feed_item:hover {
+  background-color: #B0C4DE;
+}
 
 input.vote-button{
   padding: 0px;
