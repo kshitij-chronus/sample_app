@@ -1,12 +1,12 @@
 <% if current_user.downvote?(micropost) %>
-	<%= form_for(current_user.votes.of_downvote_type.find_by_micropost_id(micropost), html: { method: :delete }) do |f| %>
+	<%= form_for(current_user.votes.where(:category => -1).find_by_micropost_id(micropost), html: { method: :delete }) do |f| %>
     <%= f.hidden_field :micropost_id %>
     <%= f.hidden_field :category %>
     <%#= f.submit "Undownvote", class: "btn btn-small" %>
     <%= button_tag "<i class=\"icon-thumbs-down\"></i> #{micropost.votes.where(:category => -1).count}".html_safe , :class=>"btn btn-medium btn-info vote-btn" %>
   <% end %>
 <% else %>
-  <%= form_for(current_user.votes.of_downvote_type.build(micropost_id: micropost.id)) do |f| %>
+  <%= form_for(current_user.votes.where(:category => -1).build(micropost_id: micropost.id)) do |f| %>
      <%= f.hidden_field :micropost_id %>
       <%= f.hidden_field :category %>
     <% if current_user.upvote?(micropost) %>  

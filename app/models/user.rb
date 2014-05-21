@@ -40,27 +40,27 @@ class User < ActiveRecord::Base
   end
 
   def upvote?(micropost_id)
-    votes.of_upvote_type.find_by_micropost_id(micropost_id)
+    votes.where(:category => 1).find_by_micropost_id(micropost_id)
   end
 
   def upvote!(micropost_id)
-    votes.of_upvote_type.create!(micropost_id: micropost_id)
+    votes.where(:category => 1).create!(micropost_id: micropost_id)
   end
 
   def unupvote!(micropost_id)
-    votes.of_upvote_type.find_by_micropost_id(micropost_id).destroy
+    votes.where(:category => 1).find_by_micropost_id(micropost_id).destroy
   end
 
   def downvote?(micropost_id)
-    votes.of_downvote_type.find_by_micropost_id(micropost_id)
+    votes.where(:category => -1).find_by_micropost_id(micropost_id)
   end
 
   def downvote!(micropost_id)
-    votes.of_downvote_type.create!(micropost_id: micropost_id)
+    votes.where(:category => -1).create!(micropost_id: micropost_id)
   end
 
   def undownvote!(micropost_id)
-    votes.of_downvote_type.find_by_micropost_id(micropost_id).destroy
+    votes.where(:category => -1).find_by_micropost_id(micropost_id).destroy
   end
 
 
