@@ -234,6 +234,10 @@ input {
 }
 .timestamp {
   color: $grayLight;
+  display: block;
+}
+.user{
+  display: block;
 }
 .gravatar {
   float: left;
@@ -255,7 +259,7 @@ ul.dropdown-menu {
 }
 
 li.feed_item{
-	 width: 275px;
+	 width: 270px;
 	 height: 238px;
 	 display: inline-block;
 	 margin: 10px;
@@ -264,8 +268,27 @@ li.feed_item{
 	 cursor: pointer;
 	 text-overflow: ellipsis;
 	 word-wrap: break-word;
-   overflow: hidden;
    margin-left: 10px;
-   padding: 3px;
+   padding: 10px;
+   .content{
+    overflow: hidden;
+    height: 120px;
+    padding: 5px;
+   }
   }
 
+
+input.vote-button{
+  padding: 0px;
+}
+
+
+.edit_vote, .new_vote{
+  margin: 5px;
+  display: inline;
+  width: 50px;
+}
+
+.feed-item-action{
+  padding: 6px;
+}

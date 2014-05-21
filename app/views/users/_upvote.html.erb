@@ -1,20 +1,21 @@
 <% if current_user.upvote?(micropost) %>
 	<%= form_for(current_user.votes.of_upvote_type.find_by_micropost_id(micropost), html: { method: :delete }) do |f| %>
-    <div><%= f.hidden_field :micropost_id %></div> 
-    <div><%= f.hidden_field :category %></div>  
+    <%= f.hidden_field :micropost_id %>
+    <%= f.hidden_field :category %> 
     <%#= f.submit "Unupvote", class: "btn btn-small" %>
-    <%= button_tag '<i class="icon-thumbs-up"></i>'.html_safe , :class=>"btn btn-medium btn-info" %>
+    <%# debugger %>
+    <%= button_tag "<i class=\"icon-thumbs-up\"></i> #{micropost.votes.where(:category => 1).count}".html_safe , :class=>"btn btn-medium btn-info vote-btn" %>
   <% end %>
 <% else %>
   <%= form_for(current_user.votes.of_upvote_type.build(micropost_id: micropost.id)) do |f| %>
-      <div><%= f.hidden_field :micropost_id %></div>    
-      <div><%= f.hidden_field :category %></div> 
+      <%= f.hidden_field :micropost_id %>  
+      <%= f.hidden_field :category %>
       <% if current_user.downvote?(micropost) %>  
         <%#= f.submit "Upvote", class: "btn btn-small btn-info" , disabled: "disabled" %>
-        <%= button_tag '<i class="icon-thumbs-up"></i>'.html_safe , :class=>"btn btn-medium " ,disabled: "disabled" %> 
+        <%= button_tag "<i class=\"icon-thumbs-up\"></i> #{micropost.votes.where(:category => 1).count}".html_safe , :class=>"btn btn-medium vote-btn" ,disabled: "disabled" %> 
       <% else %>
         <%#= f.submit "Upvote", class: "btn btn-small btn-info" %>
-        <%= button_tag '<i class="icon-thumbs-up"></i>'.html_safe , :class=>"btn btn-medium " %>
+        <%= button_tag "<i class=\"icon-thumbs-up\"></i> #{micropost.votes.where(:category => 1).count}".html_safe , :class=>"btn btn-medium vote-btn" %>
     <% end %> 
   <% end %>
 <% end %>

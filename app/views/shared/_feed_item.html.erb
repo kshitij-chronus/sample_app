@@ -3,10 +3,9 @@
     <span class="user">
       <%= link_to feed_item.user.name, feed_item.user %>
     </span>
-    <br></br>
     <span class="timestamp">Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
     </span>
-    <br></br>
+    <div class="feed-item-action">
     <%= render 'users/upvote' , micropost: feed_item %>
     <%= render 'users/downvote', micropost: feed_item %>
   <% if current_user?(feed_item.user) %>
@@ -14,7 +13,7 @@
                                      data: { confirm: "You sure?" },
                                      title: feed_item.content %>
   <% end %>
-    <div id = "vote_form">
-    </div>
+  </div>
+  <br/>
     <span class="content"><%= feed_item.content %></span>
 </li>
