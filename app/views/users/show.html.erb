@@ -24,6 +24,8 @@
         <%= render @microposts %>
       </ol>
       <%= will_paginate @microposts %>
+    <% else %>
+      <a>You have not posted anything yet !</a>
     <% end %>
   </div>
 </div>

@@ -19,7 +19,7 @@ before_filter :signed_in_user, only: [:index, :edit, :update, :destroy, :followi
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the My App!"
+      flash[:success] = "Welcome to the Blog It!!"
       redirect_to @user
     else
       render 'new'
